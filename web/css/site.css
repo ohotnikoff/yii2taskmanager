@@ -1,6 +1,59 @@
+@font-face {
+    font-family: r-regular;
+    font-weight: 400;
+    font-style: normal;
+    src: url(../fonts/Roboto/Roboto-Regular.eot);
+    src: url(../fonts/Roboto/Roboto-Regular.eot?#iefix) format("embedded-opentype"), url(../fonts/Roboto/Roboto-Regular.woff) format("woff"), url(../fonts/Roboto/Roboto-Regular.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: r-bold;
+    font-weight: 400;
+    font-style: normal;
+    src: url(../fonts/Roboto/Roboto-Bold.eot);
+    src: url(../fonts/Roboto/Roboto-Bold.eot?#iefix) format("embedded-opentype"), url(../fonts/Roboto/Roboto-Bold.woff) format("woff"), url(../fonts/Roboto/Roboto-Bold.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: r-black;
+    font-weight: 400;
+    font-style: normal;
+    src: url(../fonts/Roboto/Roboto-Black.eot);
+    src: url(../fonts/Roboto/Roboto-Black.eot?#iefix) format("embedded-opentype"), url(../fonts/Roboto/Roboto-Black.woff) format("woff"), url(../fonts/Roboto/Roboto-Black.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: r-light;
+    font-weight: 400;
+    font-style: normal;
+    src: url(../fonts/Roboto/Roboto-Light.eot);
+    src: url(../fonts/Roboto/Roboto-Light.eot?#iefix) format("embedded-opentype"), url(../fonts/Roboto/Roboto-Light.woff) format("woff"), url(../fonts/Roboto/Roboto-Light.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: r-italic;
+    font-weight: 400;
+    font-style: normal;
+    src: url(../fonts/Roboto/Roboto-Italic.eot);
+    src: url(../fonts/Roboto/Roboto-Italic.eot?#iefix) format("embedded-opentype"), url(../fonts/Roboto/Roboto-Italic.woff) format("woff"), url(../fonts/Roboto/Roboto-Italic.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: r-medium;
+    font-weight: 400;
+    font-style: normal;
+    src: url(../fonts/Roboto/Roboto-Medium.eot);
+    src: url(../fonts/Roboto/Roboto-Medium.eot?#iefix) format("embedded-opentype"), url(../fonts/Roboto/Roboto-Medium.woff) format("woff"), url(../fonts/Roboto/Roboto-Medium.ttf) format("truetype")
+}
+
 html,
 body {
     height: 100%;
+    font-family: r-regular;
+}
+
+.header-logo {
+    font-size: 2.25rem;
 }
 
 .wrap {
