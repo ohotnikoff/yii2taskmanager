@@ -20,6 +20,12 @@ use yii\behaviors\TimestampBehavior;
  */
 class Task extends \yii\db\ActiveRecord
 {
+    public static $statuses = [
+        1 => 'Новая',
+        2 => 'В работе',
+        3 => 'Завершена',
+    ];
+
     /**
      * {@inheritdoc}
      */
@@ -63,11 +69,11 @@ class Task extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'description' => 'Description',
-            'status_id' => 'Status ID',
-            'created_by' => 'Created By',
-            'assigned_to' => 'Assigned To',
+            'name' => 'Тема',
+            'description' => 'Описание',
+            'status_id' => 'Статус',
+            'created_by' => 'Постановщик',
+            'assigned_to' => 'Исполнитель',
             'created_at' => 'Дата',
         ];
     }
@@ -99,5 +105,10 @@ class Task extends \yii\db\ActiveRecord
     public function displayDate($format = 'dd.MM.yyyy')
     {
         return Yii::$app->formatter->asDate($this->created_at, $format);
+    }
+
+    public function status()
+    {
+        return self::$statuses[$this->status_id];
     }
 }

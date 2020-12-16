@@ -16,14 +16,6 @@ use yii\helpers\Html;
         <div class="mb-1"><span class="text-muted">email:</span> <?= $model->email?></div>
         <div class="mb-1"><span class="text-muted">город:</span> <?= $model->city()?></div>
         <div class="mb-1"><span class="text-muted">отдел:</span> <?= $model->department()?></div>
-        <h5 class="card-text mb-auto mt-1">Задачи к исполнению:</h5>
-        <?php if(count($model->assignedTasks) == 0): ?>
-            <p>нет задач</p>
-        <?php else: ?>
-            <?php foreach($model->assignedTasks as $task): ?>
-                <?= Html::a($task->name, ['/tasks/view', 'id' => $task->id]) ?>
-            <?php endforeach; ?>
-        <?php endif; ?>
     </div>
     <?php if($model->id == 1): ?>
         <img class="card-img-right flex-auto d-none d-md-block" src="/images/staff/1.jpg" alt="Card image cap">
