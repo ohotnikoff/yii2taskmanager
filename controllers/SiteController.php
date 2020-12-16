@@ -7,8 +7,8 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
+use app\models\City;
+use app\models\Staff;
 
 class SiteController extends Controller
 {
@@ -61,7 +61,23 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $cities = (new City)->getCitiesStaff();
+        $staff = Staff::find()->with('assignedTasks')->asArray()->all();
+
+        $data = [];
+        // foreach ($staff as $item) {
+        //     $data[$item['id']]['data_city'] = [];
+        //     if(isset($cities[$item['id']])) $data[$item['id']]['data_city'] = $cities[$item['id']];
+        //     $data[$item['id']]['data_staff'] = $item;
+        // }
+
+        // var_dump($data);
+
+        return $this->render('index', [
+            'cities' => $cities,
+            'staff' => $staff,
+            'data' => $data,
+        ]);
     }
 
     /**

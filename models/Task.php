@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "tasks".
@@ -27,6 +28,18 @@ class Task extends \yii\db\ActiveRecord
         return 'tasks';
     }
 
+    public function behaviors()
+    {
+        return [
+            'timestamp' => [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => new \yii\db\Expression('NOW()'),
+            ],
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -39,6 +52,7 @@ class Task extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 255],
             [['assigned_to'], 'exist', 'skipOnError' => true, 'targetClass' => Staff::className(), 'targetAttribute' => ['assigned_to' => 'id']],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => Staff::className(), 'targetAttribute' => ['created_by' => 'id']],
+            [['created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -54,6 +68,7 @@ class Task extends \yii\db\ActiveRecord
             'status_id' => 'Status ID',
             'created_by' => 'Created By',
             'assigned_to' => 'Assigned To',
+            'created_at' => 'Дата',
         ];
     }
 
@@ -75,5 +90,14 @@ class Task extends \yii\db\ActiveRecord
     public function getCreatedBy()
     {
         return $this->hasOne(Staff::className(), ['id' => 'created_by']);
+    }
+
+    /**
+     * Returns post create time.
+     * @return string
+     */
+    public function displayDate($format = 'dd.MM.yyyy')
+    {
+        return Yii::$app->formatter->asDate($this->created_at, $format);
     }
 }
