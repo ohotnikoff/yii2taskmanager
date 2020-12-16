@@ -17,7 +17,7 @@ use Yii;
  * @property Staff $assignedTo
  * @property Staff $createdBy
  */
-class Tasks extends \yii\db\ActiveRecord
+class Task extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}

@@ -15,11 +15,18 @@ use Yii;
  * @property string $phone
  * @property string $email
  *
- * @property Tasks[] $tasks
- * @property Tasks[] $tasks0
+ * @property Task[] $assignedTasks
+ * @property Task[] $createdTasks
  */
 class Staff extends \yii\db\ActiveRecord
 {
+    public static $departments = [
+        1 => 'Отдел продаж',
+        2 => 'Отдел маркетинга',
+        3 => 'Отдел управления',
+        4 => 'Отдел финансов',
+    ];
+
     /**
      * {@inheritdoc}
      */
@@ -47,11 +54,11 @@ class Staff extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'fullname' => 'Fullname',
-            'position' => 'Position',
-            'department_id' => 'Department ID',
-            'city_id' => 'City ID',
-            'phone' => 'Phone',
+            'fullname' => 'ФИО',
+            'position' => 'Должность',
+            'department_id' => 'Отдел',
+            'city_id' => 'Город',
+            'phone' => 'Телефон',
             'email' => 'Email',
         ];
     }
@@ -63,16 +70,26 @@ class Staff extends \yii\db\ActiveRecord
      */
     public function getAssignedTasks()
     {
-        return $this->hasMany(Tasks::className(), ['assigned_to' => 'id']);
+        return $this->hasMany(Task::className(), ['assigned_to' => 'id']);
     }
 
     /**
-     * Gets query for [[Tasks0]].
+     * Gets query for [[Tasks]].
      *
      * @return \yii\db\ActiveQuery
      */
     public function getCreatedTasks()
     {
-        return $this->hasMany(Tasks::className(), ['created_by' => 'id']);
+        return $this->hasMany(Task::className(), ['created_by' => 'id']);
+    }
+
+    public function department()
+    {
+        return self::$departments[$this->department_id];
+    }
+
+    public function city()
+    {
+        return City::$cities[$this->city_id];
     }
 }
